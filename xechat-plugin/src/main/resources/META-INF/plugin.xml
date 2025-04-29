@@ -1,0 +1,46 @@
+<idea-plugin>
+    <id>cn.xeblog.xechat.plugin</id>
+    <name>XEChat</name>
+    <vendor email="1090172196@qq.com" url="https://xeblog.cn">AnLingYi</vendor>
+
+    <description><![CDATA[
+    <p>在IDEA里享受即时聊天的乐趣！</p>
+    <p>主要功能：</p>
+    <ul>
+        <li>即时聊天</li>
+        <li>游戏对战</li>
+        <li>待探索...</li>
+    </ul>
+    <p><a href="https://github.com/anlingyi/xechat-idea">项目地址</a> <a href="https://xeblog.cn/?tag=xechat-idea">了解更多</a></p>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="XEChat" anchor="bottom" secondary="true" doNotActivateOnStart="true"
+                    factoryClass="cn.xeblog.plugin.factory.MainWindowFactory" icon="/images/logo.svg"/>
+        <notificationGroup id="cn.xeblog.xechat.notify"
+                           displayType="BALLOON"
+                           key="xechat-idea"/>
+        <applicationConfigurable parentId="tools" instance="cn.xeblog.plugin.setting.PluginConfigSetting"
+                                 id="cn.xeblog.xechat.setting" displayName="XEChat"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+    <projectListeners>
+        <listener class="cn.xeblog.plugin.listener.ProjectEventListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </projectListeners>
+
+    <application-components>
+        <component>
+            <implementation-class>cn.xeblog.plugin.persistence.PersistenceService</implementation-class>
+        </component>
+    </application-components>
+
+</idea-plugin>
